@@ -24,9 +24,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/", async (req, res) => {
-  res.status(200).json({
-    message: "Hello developers from GFG",
-  });
+  res.send("Server is Running!")
 });
 
 const connectDB = () => {
@@ -35,7 +33,7 @@ const connectDB = () => {
     .connect(process.env.MONGODB_URL)
     .then(() => console.log("Connected to Mongo DB"))
     .catch((err) => {
-      console.error("failed to connect with mongo");
+      console.error("failed to connect with Mongo");
       console.error(err);
     });
 };
@@ -43,7 +41,7 @@ const connectDB = () => {
 const startServer = async () => {
   try {
     connectDB();
-    app.listen(8080, () => console.log("Server started on port 8080"));
+    app.listen(4000, () => console.log(`Server started on ${process.env.PORT}`));
   } catch (error) {
     console.log(error);
   }
